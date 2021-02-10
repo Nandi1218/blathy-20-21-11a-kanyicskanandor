@@ -12,7 +12,7 @@ namespace Projekt
         static void Main(string[] args)
         {
 
-            List<Adatok> list = new List<Adatok>();
+            
             string line;
             System.IO.StreamReader file =
                 new System.IO.StreamReader(@"C:\Users\Nándi\Documents\GitHub\blathy_20_11a_kanyicskanandor\file.txt");
@@ -24,14 +24,8 @@ namespace Projekt
                 current.Name = words[0];
                 current.Price  = double.Parse(words[1]);
                 current.NumberRemaining = int.Parse(words[2]);
-                list.Add(current);
-
             }
-            file.Close();
-            for (int i = 0; i < list.Count; i++)
-            {
-                Console.WriteLine(list[i]);
-            }
+            file.Close();            
             Console.ReadKey();
         }       
     }
