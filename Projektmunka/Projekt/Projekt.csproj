@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Class\Adatok.cs" />
     <Compile Include="Class\Lista.cs" />
+    <Compile Include="Class\Nevek.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
