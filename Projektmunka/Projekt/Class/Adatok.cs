@@ -6,15 +6,27 @@ using System.Threading.Tasks;
 
 namespace Projekt
 {
-    public class Adatok
-    {
-        string name;
-        double price;
-        int numberRemaining;
+      public class Adatok : IComparable
+      {
+          public Adatok(string beSor)
+          {
+              string[] darabok = beSor.Split(';');
+              name = darabok[0];
+              price = int.Parse(darabok[1]);
+              numberRemaining = int.Parse(darabok[2]);
+          }
+          string name;
+          double price;
+          int numberRemaining;
 
-        public string Name { get; set; }
-        public double Price { get; set; }
-        public int NumberRemaining { get; set;}
+          public int CompareTo(object obj)
+          {
+              return this.name.CompareTo((obj as Adatok).name);
+          }
+        public override string ToString()
+        {
+            return string.Format("{0} {1} {2}", name, price, numberRemaining);
+        }
 
     }
 }
