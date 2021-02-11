@@ -11,21 +11,20 @@ namespace Projekt
     {
         static void Main(string[] args)
         {
-
-            
-            string line;
-            System.IO.StreamReader file =
-                new System.IO.StreamReader(@"C:\Users\Nándi\Documents\GitHub\blathy_20_11a_kanyicskanandor\file.txt");
-            while ((line = file.ReadLine()) != null)
+            List<Adatok> adat = new List<Adatok>();
+            int i = 0;
+            while (i <3) 
             {
-                string[] words;
-                words = line.Split(';');
-                Adatok current = new Adatok();
-                current.Name = words[0];
-                current.Price  = double.Parse(words[1]);
-                current.NumberRemaining = int.Parse(words[2]);
+                adat.Add(new Adatok(Console.ReadLine()));
+                i++;
             }
-            file.Close();            
+
+            adat.RemoveAt(1);
+            for (int j = 0; j < adat.Count; j++)
+            {
+                Console.WriteLine(adat[j]);
+            }
+           
             Console.ReadKey();
         }       
     }
