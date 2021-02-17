@@ -1,9 +1,20 @@
 GameData osztály
-string name, string developer, string publisher mezői vannak.
+String name, string developer, string publisher mező vannak benne.
+Listában vannak eltárolva a példányok.
 Képes txt-ből adatokat felvenni.
+- [x] Add
+- [x] Remove
+- [x] Update
+- [x] Load
+- [x] List out
+- [ ] Save
 
 
 
+
+
+
+Class  kódja:
 public class GameData : IComparable
       {
           public GameData(string beSor)
