@@ -1,4 +1,4 @@
-GameData osztály
+GameData osztály.
 String name, string developer, string publisher mező vannak benne.
 Listában vannak eltárolva a példányok.
 Képes txt-ből adatokat felvenni.
