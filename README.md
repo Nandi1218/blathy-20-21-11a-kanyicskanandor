@@ -15,7 +15,7 @@ Képes txt-ből adatokat felvenni.
 
 
 Class  kódja:
-public class GameData : IComparable
+""public class GameData : IComparable
       {
           public GameData(string beSor)
           {
@@ -27,8 +27,7 @@ public class GameData : IComparable
           string name;
           string developer;
           string publisher;
-          
-
+     
           public int CompareTo(object obj)
           {
               return this.name.CompareTo((obj as GameData).name);
@@ -38,4 +37,4 @@ public class GameData : IComparable
               return string.Format("{0} {1} {2}", name, developer, publisher);
           }
 
-      }
+      }""
