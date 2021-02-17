@@ -11,11 +11,11 @@ namespace Projekt
     {
         static void Main(string[] args)
         {
-            List<GameData> dataList = new List<GameData>(); 
+            List<GameData> dataList = new List<GameData>();
 
-            
-            
-            
+
+
+            string removed= default;
             string removeAtInput = "";          
             int i = 0;  
             string input = default;             
@@ -24,7 +24,7 @@ namespace Projekt
             while (input != "stop")             //Main loop
             {
                
-                input = Console.ReadLine();     //main input
+                input = Console.ReadLine();     //Input for the switch
                
                 
                 switch (input)
@@ -47,21 +47,22 @@ namespace Projekt
                         Console.Clear();
                         StreamReader sr = new StreamReader("TextFile1.txt");
                         dataList.Clear();
-                        for (string sor = sr.ReadLine(); sor != null; sor = sr.ReadLine())
-                        {
-                            dataList.Add(new GameData(sor));
+                        for (string sor = sr.ReadLine(); sor != null; sor = sr.ReadLine()) // Reads all rows from "TextFile1.txt" 
+                        {                                                                  // and puts them into the dataList
+                            dataList.Add(new GameData(sor));                               // as an instance of GameData
                         }
                         sr.Close();
                         Console.WriteLine("Successfully loaded.");
                         break;
 
 
-
-
+                        
+                    
                     case "Add": case "add": case"2":
                     {
                             Console.Clear();
-                            dataList.Add(new GameData(Console.ReadLine()));                        
+                            Console.WriteLine("Format: Name;Developer;Publisher");
+                            dataList.Add(new GameData(Console.ReadLine()));             //Creates a new instance of GameData for the input and puts it into the dataList.                        
                             i++;
                             Console.Clear();
                             Console.WriteLine("Added"); 
@@ -75,8 +76,9 @@ namespace Projekt
                         Console.Clear();
                         Console.WriteLine("At which index would you like to remove an instance?");
                         removeAtInput = Console.ReadLine();
+                        
                         dataList.RemoveAt(int.Parse(removeAtInput));
-                        Console.WriteLine("Removed");
+                        Console.WriteLine("Removed the " + removeAtInput + ". ");
                         break;
 
 
@@ -112,6 +114,16 @@ namespace Projekt
                             4. Update
                             5. ls");
                         break;
+
+
+
+                        /* case "asd":
+
+                       
+
+                        break;
+                        */
+                        
                 }
             }
         }       
