@@ -11,7 +11,7 @@ namespace Projekt
     {
         static void Main(string[] args)
         {
-            List<Adatok> dataList = new List<Adatok>(); 
+            List<GameData> dataList = new List<GameData>(); 
 
             
             
@@ -24,7 +24,7 @@ namespace Projekt
             while (input != "stop")             //Main loop
             {
                
-                input = Console.ReadLine();
+                input = Console.ReadLine();     //main input
                
                 
                 switch (input)
@@ -49,7 +49,7 @@ namespace Projekt
                         dataList.Clear();
                         for (string sor = sr.ReadLine(); sor != null; sor = sr.ReadLine())
                         {
-                            dataList.Add(new Adatok(sor));
+                            dataList.Add(new GameData(sor));
                         }
                         sr.Close();
                         Console.WriteLine("Successfully loaded.");
@@ -60,7 +60,8 @@ namespace Projekt
 
                     case "Add": case "add": case"2":
                     {
-                            dataList.Add(new Adatok(Console.ReadLine()));                        
+                            Console.Clear();
+                            dataList.Add(new GameData(Console.ReadLine()));                        
                             i++;
                             Console.Clear();
                             Console.WriteLine("Added"); 
@@ -87,7 +88,7 @@ namespace Projekt
                         removeAtInput = Console.ReadLine();
                         dataList.RemoveAt(int.Parse(removeAtInput));
                         Console.WriteLine("Type in the new elements");
-                        dataList.Insert(int.Parse(removeAtInput), new Adatok(Console.ReadLine()));
+                        dataList.Insert(int.Parse(removeAtInput), new GameData(Console.ReadLine()));
                         Console.WriteLine("Updated");
                         break;
 
