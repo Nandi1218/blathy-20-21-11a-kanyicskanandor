@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Projekt
 {
-      public class Adatok : IComparable
+      public class GameData : IComparable
       {
-          public Adatok(string beSor)
+          public GameData(string beSor)
           {
               string[] darabok = beSor.Split(';');
               name = darabok[0];
@@ -22,7 +22,7 @@ namespace Projekt
 
           public int CompareTo(object obj)
           {
-              return this.name.CompareTo((obj as Adatok).name);
+              return this.name.CompareTo((obj as GameData).name);
           }
         public override string ToString()
         {
