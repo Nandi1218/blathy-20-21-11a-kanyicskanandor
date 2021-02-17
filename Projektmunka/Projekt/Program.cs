@@ -11,63 +11,108 @@ namespace Projekt
     {
         static void Main(string[] args)
         {
-            string removeAtInput = "";
-            List<Adatok> adat = new List<Adatok>();
-            int i = 0;
-            string input = "";
-            while (input != "stop")
+            List<Adatok> dataList = new List<Adatok>(); 
+
+            
+            
+            
+            string removeAtInput = "";          
+            int i = 0;  
+            string input = default;             
+
+            
+            while (input != "stop")             //Main loop
             {
+               
                 input = Console.ReadLine();
+               
+                
                 switch (input)
                 {
-                    case "Add":
-                        {
-                            adat.Add(new Adatok(Console.ReadLine()));
-                            i++;
-                        }
+                    
+                    case "Help": case"help": case "?":
+
+                        Console.WriteLine(@"List of available commands: 1. Load
+                            2. Add
+                            3. Remove
+                            4. Update
+                            5. ls");
                         break;
-                    case "Remove":
+
+
+
+
+
+                    case "Load": case "load": case "1":
+                        Console.Clear();
+                        StreamReader sr = new StreamReader("TextFile1.txt");
+                        dataList.Clear();
+                        for (string sor = sr.ReadLine(); sor != null; sor = sr.ReadLine())
+                        {
+                            dataList.Add(new Adatok(sor));
+                        }
+                        sr.Close();
+                        Console.WriteLine("Successfully loaded.");
+                        break;
+
+
+
+
+                    case "Add": case "add": case"2":
+                    {
+                            dataList.Add(new Adatok(Console.ReadLine()));                        
+                            i++;
+                            Console.Clear();
+                            Console.WriteLine("Added"); 
+                       }
+                        break;
+
+
+
+
+                    case "Remove": case"remove": case"3":
+                        Console.Clear();
                         Console.WriteLine("At which index would you like to remove an instance?");
                         removeAtInput = Console.ReadLine();
-                        adat.RemoveAt(int.Parse(removeAtInput));
+                        dataList.RemoveAt(int.Parse(removeAtInput));
                         Console.WriteLine("Removed");
                         break;
-                    case "Update":
 
+
+
+
+                    case "Update": case"update": case"4":
+                        Console.Clear();
                         Console.WriteLine("At which index would you like to update the instance?");
                         removeAtInput = Console.ReadLine();
-                        adat.RemoveAt(int.Parse(removeAtInput));
+                        dataList.RemoveAt(int.Parse(removeAtInput));
                         Console.WriteLine("Type in the new elements");
-                        adat.Insert(int.Parse(removeAtInput), new Adatok(Console.ReadLine()));
-
+                        dataList.Insert(int.Parse(removeAtInput), new Adatok(Console.ReadLine()));
                         Console.WriteLine("Updated");
                         break;
-                    case "ls":
 
-                        for (int j = 0; j < adat.Count; j++)
+
+
+
+                    case "ls": case "5": case "Ls":
+                        Console.Clear();
+                        for (int j = 0; j < dataList.Count; j++)
                         {
-                            Console.WriteLine(adat[j]);
+                            Console.WriteLine(j + ". " + dataList[j]);
                         }
                         break;
+
                     default:
-                        Console.WriteLine("Update, add or remove");
+                        Console.Clear();
+                        Console.WriteLine("Please enter a valid command or a it's corresponding number.");
+                        Console.WriteLine(@"List of available commands: 1. Load
+                            2. Add
+                            3. Remove
+                            4. Update
+                            5. ls");
                         break;
                 }
             }
-
-           /* while (i <3) 
-            {
-                adat.Add(new Adatok(Console.ReadLine()));
-                i++;
-            }
-
-            adat.RemoveAt(1);
-            for (int j = 0; j < adat.Count; j++)
-            {
-                Console.WriteLine(adat[j]);
-            }
-           */
-            Console.ReadKey();
         }       
     }
 
