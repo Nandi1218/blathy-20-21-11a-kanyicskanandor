@@ -12,12 +12,13 @@ namespace Projekt
           {
               string[] darabok = beSor.Split(';');
               name = darabok[0];
-              price = int.Parse(darabok[1]);
-              numberRemaining = int.Parse(darabok[2]);
+              developer = darabok[1];
+              publisher = darabok[2];
           }
           string name;
-          double price;
-          int numberRemaining;
+          string developer;
+          string publisher;
+          
 
           public int CompareTo(object obj)
           {
@@ -25,7 +26,7 @@ namespace Projekt
           }
         public override string ToString()
         {
-            return string.Format("{0} {1} {2}", name, price, numberRemaining);
+            return string.Format("{0} {1} {2}", name, developer, publisher);
         }
 
     }
