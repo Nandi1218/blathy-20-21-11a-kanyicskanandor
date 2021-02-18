@@ -62,8 +62,8 @@ namespace Projekt
                     {
                             Console.Clear();
                             Console.WriteLine("Format: Name;Developer;Publisher");
-                            dataList.Add(new GameData(Console.ReadLine()));             //Creates a new instance of GameData for                       
-                            i++;                                                        //the input and puts it into the dataList.
+                            dataList.Add(new GameData(Console.ReadLine()));             //Creates a new instance of GameData for the input and puts it into the dataList.                        
+                            i++;
                             Console.Clear();
                             Console.WriteLine("Added"); 
                        }
@@ -73,9 +73,9 @@ namespace Projekt
 
 
                     case "Remove": case"remove": case"3":
-                        Console.Clear();                                                //
-                        Console.WriteLine("At which index would you like to remove?");  //Removes the "removeAtIndex". index of dataList 
-                        removeAtInput = Console.ReadLine();                             //
+                        Console.Clear();
+                        Console.WriteLine("At which index would you like to remove an instance?");
+                        removeAtInput = Console.ReadLine();
                         
                         dataList.RemoveAt(int.Parse(removeAtInput));
                         Console.WriteLine("Removed the " + removeAtInput + ". ");
@@ -87,8 +87,8 @@ namespace Projekt
                     case "Update": case"update": case"4":
                         Console.Clear();
                         Console.WriteLine("At which index would you like to update the instance?");
-                        removeAtInput = Console.ReadLine();                                             //Removes the "removeAtIndex". index of dataList
-                        dataList.RemoveAt(int.Parse(removeAtInput));                                    //and adds a new element at the index of the old one.
+                        removeAtInput = Console.ReadLine();
+                        dataList.RemoveAt(int.Parse(removeAtInput));
                         Console.WriteLine("Type in the new elements");
                         dataList.Insert(int.Parse(removeAtInput), new GameData(Console.ReadLine()));
                         Console.WriteLine("Updated");
