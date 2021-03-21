@@ -15,8 +15,7 @@ Képes txt-ből adatokat felvenni.
 WPF-ben:
 - [x] Adatkötés
 - [x] Commandokkal való vezérlés
-- [x] Add     \
-               > Kommandok
-- [x] Clear   /
+- [x] Add 
+- [x] Clear   
 
 Bónusz munka [videó](https://youtu.be/dQw4w9WgXcQ)
