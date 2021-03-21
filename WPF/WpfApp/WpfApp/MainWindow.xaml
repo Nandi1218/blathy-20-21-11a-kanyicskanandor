@@ -16,16 +16,21 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="0.5*"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox Text="{Binding Path=Input, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="1" Background="#999999" Margin="5"></TextBox>
-        <Button Grid.Column="0" Grid.Row="2" Height="50" Content="Clear" FontSize="25" FontWeight="Bold" Command="{Binding Path=CMD_Clear}"></Button>
-        <Button Grid.Column="1" Grid.Row="2" Height="50" Content="Add" FontSize="25" FontWeight="Bold" Command="{Binding Path=CMD_Add}"></Button>
-        <ListBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Path=Elements}" Margin="5" Background="#666666"></ListBox>
-        <TextBlock Grid.Row="0" Grid.Column="1"></TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="2"></TextBlock>
+        <TextBox Text="{Binding Path=Input, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2" Background="#999999" Margin="5"></TextBox>
+        <Button Grid.Column="0" Grid.Row="3" Height="50" Content="Clear" FontSize="25" FontWeight="Bold" Command="{Binding Path=CMD_Clear}"></Button>
+        <Button Grid.Column="1" Grid.Row="3" Height="50" Content="Add" FontSize="25" FontWeight="Bold" Command="{Binding Path=CMD_Add}"></Button>
+        <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=GameName}" HorizontalContentAlignment="Center" Margin="5" Background="#666666"></ListBox>
+        <ListBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=Developer}" HorizontalContentAlignment="Center" Margin="5" Background="#666666"></ListBox>
+        <ListBox Grid.Row="1" Grid.Column="2" ItemsSource="{Binding Path=Publisher}" HorizontalContentAlignment="Center" Margin="5" Background="#666666"></ListBox>
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="; -vel elválasztva kell elválasztani" Background="#666666" FontSize="18" TextAlignment="Center"/>
+        <Label Grid.Row="0" Grid.Column="0" Content="Game Name:" FontSize="20"/>
+        <Label Grid.Row="0" Grid.Column="1" Content="Developer:" FontSize="20"/>
+        <Label Grid.Row="0" Grid.Column="2" Content="Publisher:" FontSize="20"/>
     </Grid>
     
 </Window>
