@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -14,7 +15,9 @@ namespace WpfApp
     {
         public MainVM()
         {
-            Elements = new ObservableCollection<string>();
+            GameName = new ObservableCollection<string>();
+            Developer = new ObservableCollection<string>();
+            Publisher = new ObservableCollection<string>();
             CMD_Clear = new RelayCommand(Clear, ClearCanExecute);
             CMD_Add = new RelayCommand(Add, AddCanExecute);
         }
@@ -26,21 +29,39 @@ namespace WpfApp
         public ICommand CMD_Add { get; set; }
         private void Add()
         {
-            Elements.Add(Input);
+            string[] temp = Input.Split(';');
+
+            GameName.Add(temp[0]);
+            Developer.Add(temp[1]);
+            Publisher.Add(temp[2]);
             Input = "";
         }
         private bool AddCanExecute()
         {
-            return !string.IsNullOrWhiteSpace(Input);
+            char c = ';';
+            if (!string.IsNullOrWhiteSpace(Input) && !(Input.Last() == c))
+            {
+                if ((Regex.Matches(Input, ";").Count) == 2)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+            // return !string.IsNullOrWhiteSpace(Input);
         }
         private void Clear()
         {
-            Elements.Clear();
+            GameName.Clear();
+            Developer.Clear();
+            Publisher.Clear();
         }
-        private bool ClearCanExecute() 
+        private bool ClearCanExecute()
         {
-            return Elements.Count > 0;
+            return GameName.Count > 0;
         }
-        public ObservableCollection<string> Elements { get; private set; }
+        public ObservableCollection<string> GameName { get; private set; }
+        public ObservableCollection<string> Developer { get; private set; }
+        public ObservableCollection<string> Publisher { get; private set; }
     }
 }
