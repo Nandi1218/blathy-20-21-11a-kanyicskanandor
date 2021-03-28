@@ -7,6 +7,6 @@
 - [x] New
 - [x] ObservableCollections 
 
-![GitHub Logo](/images/logo.png)
+![Design](/SneakPeak.png)
 
 Bónusz munka [videó](https://youtu.be/dQw4w9WgXcQ)
