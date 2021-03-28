@@ -5,22 +5,59 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
         Title="MainWindow" Height="450" Width="800">
+
     <Window.Resources>
         <local:MainVM x:Key="VM"/>
     </Window.Resources>
-    <Grid DataContext="{StaticResource ResourceKey=VM}" Background="#336699">
+
+    <Grid DataContext="{StaticResource ResourceKey=VM}" Background="#0f0f2d">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="350"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
-
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="#181535" MouseDown="Grid_MouseDown">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Button Name="CloseButton" Grid.Column="7" Content="X" Click="CloseButton_Click" FontSize="24" Foreground="White">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#181535"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#231d54"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="25" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Label Grid.Row="0" Grid.Column="1" Margin="0" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Fonts/#RobotoThin" Foreground="White" FontWeight="Light" Content="Kanyicska Nándor 11A PRG" Grid.ColumnSpan="3"></Label>
+        </Grid>
+
         <Grid Grid.Row="1" Grid.Column="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
@@ -37,19 +74,175 @@
 
             </Grid.RowDefinitions>
 
-            <TextBox FontSize="30" IsEnabled="{Binding Path=SelectedNotNull}" Text="{Binding Path=Selected.Name, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"  Grid.Column="1" Grid.Row="0" Background="#999999" Margin="5"></TextBox>
-            <TextBox FontSize="30" IsEnabled="{Binding Path=SelectedNotNull}" Text="{Binding Path=Selected.Developer, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"  Grid.Column="1" Grid.Row="1" Background="#999999" Margin="5"></TextBox>
-            <TextBox FontSize="30" IsEnabled="{Binding Path=SelectedNotNull}" Text="{Binding Path=Selected.Publisher, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"  Grid.Column="1" Grid.Row="2" Background="#999999" Margin="5"></TextBox>
-            <Label Grid.Row="0" Grid.Column="0" Content="Name:" FontSize="20" FontWeight="Bold" Foreground="White"/>
-            <Label Grid.Row="1" Grid.Column="0" Content="Developer:" FontSize="20" FontWeight="Bold" Foreground="White"/>
-            <Label Grid.Row="2" Grid.Column="0" Content="Publisher:" FontSize="20" FontWeight="Bold" Foreground="White"/>
-            <Button Margin="2" Grid.Column="0" Grid.Row="4" Height="50" Content="Clear" FontSize="25" FontWeight="Bold" Command="{Binding Path=CMD_Clear}" Grid.ColumnSpan="2"></Button>
-            <Button Margin="2" Grid.Column="0" Grid.Row="3" Height="50" Content="Ok" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="2" Command="{Binding Path=CMD_Add}"></Button>
-            <Button Margin="2" Grid.Column="0" Grid.Row="5" Height="50" Content="Remove" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="2" Command="{Binding Path=CMD_Remove}"></Button>
-            <Button Margin="2" Grid.Column="0" Grid.Row="6"  Height="50" Content="New" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="2" Command="{Binding Path=CMD_New}"></Button>
+            <TextBox FontSize="30" IsEnabled="{Binding Path=SelectedNotNull}" Text="{Binding Path=Selected.Name, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"  Grid.Column="1" Grid.Row="0" Margin="2,30,30,2">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Background" Value="#505099"></Setter>
+                        <Setter Property="Focusable" Value="True"></Setter>
+                        <Setter Property="IsReadOnly" Value="False"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#4e4e78"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+                <TextBox.Template>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border CornerRadius="0,20,0,0" Background="{TemplateBinding Background}" BorderThickness="1" 
+                                BorderBrush="{TemplateBinding BorderBrush}"  >
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <TextBox FontSize="30" IsEnabled="{Binding Path=SelectedNotNull}" Text="{Binding Path=Selected.Developer, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"  Grid.Column="1" Grid.Row="1" Margin="2,2,30,2">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Background" Value="#505099"></Setter>
+                        <Setter Property="Focusable" Value="True"></Setter>
+                        <Setter Property="IsReadOnly" Value="False"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#4e4e78"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+                <TextBox.Template>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="1" 
+                                BorderBrush="{TemplateBinding BorderBrush}"  >
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <TextBox FontSize="30" IsEnabled="{Binding Path=SelectedNotNull}" Text="{Binding Path=Selected.Publisher, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"  Grid.Column="1" Grid.Row="2" Margin="2,2,30,2">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Background" Value="#505099"></Setter>
+                        <Setter Property="Focusable" Value="True"></Setter>
+                        <Setter Property="IsReadOnly" Value="False"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#4e4e78"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+                <TextBox.Template>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border CornerRadius="0,0,20,0" Background="{TemplateBinding Background}" BorderThickness="1" 
+                                BorderBrush="{TemplateBinding BorderBrush}"  >
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <Label FontFamily="Fonts/#Roboto" Grid.Row="0" Grid.Column="0" Content="Name:" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Right" Margin="2,30,2,2" Foreground="White"/>
+            <Label FontFamily="Fonts/#Roboto" Grid.Row="1" Grid.Column="0" Content="Developer:" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Right" Foreground="White"/>
+            <Label Grid.Row="2" FontFamily="Fonts/#Roboto" Grid.Column="0" Content="Publisher:" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Right" Foreground="White"/>
+            <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Vertical">
+                <Button Margin="2,2,30,2"  Height="50" Content="New" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="2" Command="{Binding Path=CMD_New}">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FE6584"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF4C70"/>
 
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background" Value="#917178"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="25" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Margin="2,2,30,2"  Height="50" Content="Ok" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="2" Command="{Binding Path=CMD_Add}">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FE6584"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF4C70"/>
+
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background" Value="#917178"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="25" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Margin="2,2,30,2"  Height="50" Content="Remove" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="2" Command="{Binding Path=CMD_Remove}">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FE6584"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF4C70"/>
+
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background" Value="#917178"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="25" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Margin="2,2,30,2" Content="Clear"  Height="50" FontSize="25" FontWeight="Bold" Command="{Binding Path=CMD_Clear}" Grid.ColumnSpan="2" >
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FE6584"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF4C70"/>
+
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background" Value="#917178"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="25" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
         </Grid>
-        <ListBox  Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=GameData}" SelectedItem="{Binding Path=Selected, Mode=TwoWay}" HorizontalContentAlignment="Center" Margin="5" Background="#666666">
+        <ListBox BorderThickness="0" FontSize="24" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=GameData}" SelectedItem="{Binding Path=Selected, Mode=TwoWay}" HorizontalContentAlignment="Left" Margin="25" FontFamily="Fonts/#RobotoThin" Foreground="White" FontWeight="Light" Background="#0f0f2d">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -60,6 +253,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+       
     </Grid>
 
 </Window>
