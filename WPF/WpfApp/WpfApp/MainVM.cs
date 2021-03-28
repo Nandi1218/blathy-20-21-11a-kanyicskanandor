@@ -11,57 +11,55 @@ using System.Windows.Input;
 
 namespace WpfApp
 {
-    class MainVM : ViewModelBase
+    public class MainVM : ViewModelBase
     {
         public MainVM()
         {
-            GameName = new ObservableCollection<string>();
-            Developer = new ObservableCollection<string>();
-            Publisher = new ObservableCollection<string>();
-            CMD_Clear = new RelayCommand(Clear, ClearCanExecute);
-            CMD_Add = new RelayCommand(Add, AddCanExecute);
+            this.PropertyChanged += MainVM_PropertyChanged;
+            GameData = new ObservableCollection<Data>();
+            Game = new ObservableCollection<string>();
+
+
+            CMD_New = new RelayCommand(() => { Selected = new Data(); }, () => Selected is null || GameData.Contains(Selected));
+
+            CMD_Add = new RelayCommand(() => { GameData.Add(Selected); Selected = null; }, () => !GameData.Contains(Selected) && SelectedNotNull);
+
+            CMD_Clear = new RelayCommand(() => { GameData.Clear(); }, () => GameData.Count > 0);
+
+            CMD_Remove = new RelayCommand(() => { GameData.Remove(Selected); }, () => SelectedNotNull && GameData.Contains(Selected));
+
         }
+
+        private void MainVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+
+            switch (e.PropertyName)
+            {
+                case "Selected":
+                    SelectedNotNull = Selected != null;
+                    break;
+                default:
+                    break;
+            }
+        }
+        private bool selectedNotNull;
         private string input;
         private string output;
+        private Data selected;
         public string Input { get => input; set => Set(ref input, value); }
         public string Output { get => output; set => Set(ref output, value); }
+        public Data Selected { get => selected; set => Set(ref selected, value); }
+        public bool SelectedNotNull { get => selectedNotNull; set => Set(ref selectedNotNull, value); }
         public ICommand CMD_Clear { get; set; }
         public ICommand CMD_Add { get; set; }
-        private void Add()
-        {
-            string[] temp = Input.Split(';');
-
-            GameName.Add(temp[0]);
-            Developer.Add(temp[1]);
-            Publisher.Add(temp[2]);
-            Input = "";
-        }
-        private bool AddCanExecute()
-        {
-            char c = ';';
-            if (!string.IsNullOrWhiteSpace(Input) && !(Input.Last() == c))
-            {
-                if ((Regex.Matches(Input, ";").Count) == 2)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-            // return !string.IsNullOrWhiteSpace(Input);
-        }
-        private void Clear()
-        {
-            GameName.Clear();
-            Developer.Clear();
-            Publisher.Clear();
-        }
+        public ICommand CMD_Remove { get; set; }
+        public ICommand CMD_New { get; set; }
         private bool ClearCanExecute()
         {
-            return GameName.Count > 0;
+            return GameData.Count > 0;
         }
-        public ObservableCollection<string> GameName { get; private set; }
-        public ObservableCollection<string> Developer { get; private set; }
-        public ObservableCollection<string> Publisher { get; private set; }
+
+        public ObservableCollection<string> Game { get; private set; }
+        public ObservableCollection<Data> GameData { get; private set; }
     }
 }

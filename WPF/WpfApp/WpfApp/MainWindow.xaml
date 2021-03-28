@@ -18,19 +18,48 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="0.5*"></RowDefinition>
+
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox Text="{Binding Path=Input, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2" Background="#999999" Margin="5"></TextBox>
-        <Button Grid.Column="0" Grid.Row="3" Height="50" Content="Clear" FontSize="25" FontWeight="Bold" Command="{Binding Path=CMD_Clear}"></Button>
-        <Button Grid.Column="1" Grid.Row="3" Height="50" Content="Add" FontSize="25" FontWeight="Bold" Command="{Binding Path=CMD_Add}"></Button>
-        <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=GameName}" HorizontalContentAlignment="Center" Margin="5" Background="#666666"></ListBox>
-        <ListBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=Developer}" HorizontalContentAlignment="Center" Margin="5" Background="#666666"></ListBox>
-        <ListBox Grid.Row="1" Grid.Column="2" ItemsSource="{Binding Path=Publisher}" HorizontalContentAlignment="Center" Margin="5" Background="#666666"></ListBox>
-        <TextBlock Grid.Row="3" Grid.Column="2" Text="; -vel elválasztva kell elválasztani" Background="#666666" FontSize="18" TextAlignment="Center"/>
-        <Label Grid.Row="0" Grid.Column="0" Content="Game Name:" FontSize="20"/>
-        <Label Grid.Row="0" Grid.Column="1" Content="Developer:" FontSize="20"/>
-        <Label Grid.Row="0" Grid.Column="2" Content="Publisher:" FontSize="20"/>
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+
+            </Grid.RowDefinitions>
+
+            <TextBox FontSize="30" IsEnabled="{Binding Path=SelectedNotNull}" Text="{Binding Path=Selected.Name, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"  Grid.Column="1" Grid.Row="0" Background="#999999" Margin="5"></TextBox>
+            <TextBox FontSize="30" IsEnabled="{Binding Path=SelectedNotNull}" Text="{Binding Path=Selected.Developer, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"  Grid.Column="1" Grid.Row="1" Background="#999999" Margin="5"></TextBox>
+            <TextBox FontSize="30" IsEnabled="{Binding Path=SelectedNotNull}" Text="{Binding Path=Selected.Publisher, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"  Grid.Column="1" Grid.Row="2" Background="#999999" Margin="5"></TextBox>
+            <Label Grid.Row="0" Grid.Column="0" Content="Name:" FontSize="20" FontWeight="Bold" Foreground="White"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Developer:" FontSize="20" FontWeight="Bold" Foreground="White"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Publisher:" FontSize="20" FontWeight="Bold" Foreground="White"/>
+            <Button Margin="2" Grid.Column="0" Grid.Row="4" Height="50" Content="Clear" FontSize="25" FontWeight="Bold" Command="{Binding Path=CMD_Clear}" Grid.ColumnSpan="2"></Button>
+            <Button Margin="2" Grid.Column="0" Grid.Row="3" Height="50" Content="Ok" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="2" Command="{Binding Path=CMD_Add}"></Button>
+            <Button Margin="2" Grid.Column="0" Grid.Row="5" Height="50" Content="Remove" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="2" Command="{Binding Path=CMD_Remove}"></Button>
+            <Button Margin="2" Grid.Column="0" Grid.Row="6"  Height="50" Content="New" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="2" Command="{Binding Path=CMD_New}"></Button>
+
+        </Grid>
+        <ListBox  Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=GameData}" SelectedItem="{Binding Path=Selected, Mode=TwoWay}" HorizontalContentAlignment="Center" Margin="5" Background="#666666">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=Name}" Margin="1"></TextBlock>
+                        <TextBlock Text="{Binding Path=Developer}" Margin="1"></TextBlock>
+                        <TextBlock Text="{Binding Path=Publisher}" Margin="1"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
-    
+
 </Window>
