@@ -1,3 +1,4 @@
+# Kanyicska Nándor 11A
 
 - [x] Adatkötés
 - [x] Commandokkal való vezérlés
