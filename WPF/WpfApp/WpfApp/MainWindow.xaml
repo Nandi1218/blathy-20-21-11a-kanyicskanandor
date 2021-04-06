@@ -80,6 +80,7 @@
                         <Setter Property="Background" Value="#505099"></Setter>
                         <Setter Property="Focusable" Value="True"></Setter>
                         <Setter Property="IsReadOnly" Value="False"></Setter>
+                        <Setter Property="Foreground" Value="White"></Setter>
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Background" Value="#4e4e78"/>
@@ -89,7 +90,7 @@
                 </TextBox.Style>
                 <TextBox.Template>
                     <ControlTemplate TargetType="TextBox">
-                        <Border CornerRadius="0,20,0,0" Background="{TemplateBinding Background}" BorderThickness="1" 
+                        <Border CornerRadius="0,20,0,0" Background="{TemplateBinding Background}" BorderThickness="0" 
                                 BorderBrush="{TemplateBinding BorderBrush}"  >
                             <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
                         </Border>
@@ -102,6 +103,7 @@
                         <Setter Property="Background" Value="#505099"></Setter>
                         <Setter Property="Focusable" Value="True"></Setter>
                         <Setter Property="IsReadOnly" Value="False"></Setter>
+                        <Setter Property="Foreground" Value="White"></Setter>
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Background" Value="#4e4e78"/>
@@ -111,7 +113,7 @@
                 </TextBox.Style>
                 <TextBox.Template>
                     <ControlTemplate TargetType="TextBox">
-                        <Border Background="{TemplateBinding Background}" BorderThickness="1" 
+                        <Border Background="{TemplateBinding Background}" BorderThickness="0" 
                                 BorderBrush="{TemplateBinding BorderBrush}"  >
                             <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
                         </Border>
@@ -124,6 +126,7 @@
                         <Setter Property="Background" Value="#505099"></Setter>
                         <Setter Property="Focusable" Value="True"></Setter>
                         <Setter Property="IsReadOnly" Value="False"></Setter>
+                        <Setter Property="Foreground" Value="White"></Setter>
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Background" Value="#4e4e78"/>
@@ -133,36 +136,40 @@
                 </TextBox.Style>
                 <TextBox.Template>
                     <ControlTemplate TargetType="TextBox">
-                        <Border CornerRadius="0,0,20,0" Background="{TemplateBinding Background}" BorderThickness="1" 
+                        <Border CornerRadius="0,0,20,0" Background="{TemplateBinding Background}" BorderThickness="0" 
                                 BorderBrush="{TemplateBinding BorderBrush}"  >
                             <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
                         </Border>
                     </ControlTemplate>
                 </TextBox.Template>
             </TextBox>
-            <Label FontFamily="Fonts/#Roboto" Grid.Row="0" Grid.Column="0" Content="Name:" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Right" Margin="2,30,2,2" Foreground="White"/>
-            <Label FontFamily="Fonts/#Roboto" Grid.Row="1" Grid.Column="0" Content="Developer:" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Right" Foreground="White"/>
-            <Label Grid.Row="2" FontFamily="Fonts/#Roboto" Grid.Column="0" Content="Publisher:" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Right" Foreground="White"/>
+            <Label FontFamily="Fonts/#RobotoLight" FontWeight="Light" Grid.Row="0" Grid.Column="0" Content="Name:" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Right" Margin="2,30,2,2" Foreground="White"/>
+            <Label FontFamily="Fonts/#RobotoLight" FontWeight="Light" Grid.Row="1" Grid.Column="0" Content="Developer:" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Right" Foreground="White"/>
+            <Label Grid.Row="2" FontFamily="Fonts/#RobotoLight" FontWeight="Light" Grid.Column="0" Content="Publisher:" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Right" Foreground="White"/>
             <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Vertical">
                 <Button Margin="2,2,30,2"  Height="50" Content="New" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="2" Command="{Binding Path=CMD_New}">
                     <Button.Style>
                         <Style TargetType="Button">
+                            <Setter Property="FontFamily" Value="Fonts/#RobotoLight"/>
+                            <Setter Property="FontWeight" Value="Light"/>
                             <Setter Property="Background" Value="#FE6584"/>
                             <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Foreground" Value="White"></Setter>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="#FF4C70"/>
 
                                 </Trigger>
                                 <Trigger Property="IsEnabled" Value="False">
-                                    <Setter Property="Background" Value="#917178"/>
+                                    <Setter Property="Background" Value="#d18292"/>
+                                    <Setter Property="Foreground" Value="LightGray"></Setter>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Border CornerRadius="25" Background="{TemplateBinding Background}">
+                            <Border CornerRadius="25,25,0,0" Background="{TemplateBinding Background}">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
@@ -173,20 +180,22 @@
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#FE6584"/>
                             <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Foreground" Value="White"></Setter>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="#FF4C70"/>
 
                                 </Trigger>
                                 <Trigger Property="IsEnabled" Value="False">
-                                    <Setter Property="Background" Value="#917178"/>
+                                    <Setter Property="Foreground" Value="LightGray"></Setter>
+                                    <Setter Property="Background" Value="#d18292"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Border CornerRadius="25" Background="{TemplateBinding Background}">
+                            <Border CornerRadius="5" Background="{TemplateBinding Background}">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
@@ -195,6 +204,7 @@
                 <Button Margin="2,2,30,2"  Height="50" Content="Remove" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="2" Command="{Binding Path=CMD_Remove}">
                     <Button.Style>
                         <Style TargetType="Button">
+                            <Setter Property="Foreground" Value="White"></Setter>
                             <Setter Property="Background" Value="#FE6584"/>
                             <Setter Property="Cursor" Value="Hand"/>
                             <Style.Triggers>
@@ -203,14 +213,15 @@
 
                                 </Trigger>
                                 <Trigger Property="IsEnabled" Value="False">
-                                    <Setter Property="Background" Value="#917178"/>
+                                    <Setter Property="Foreground" Value="LightGray"></Setter>
+                                    <Setter Property="Background" Value="#d18292"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Border CornerRadius="25" Background="{TemplateBinding Background}">
+                            <Border CornerRadius="5" Background="{TemplateBinding Background}">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
@@ -219,6 +230,7 @@
                 <Button Margin="2,2,30,2" Content="Clear"  Height="50" FontSize="25" FontWeight="Bold" Command="{Binding Path=CMD_Clear}" Grid.ColumnSpan="2" >
                     <Button.Style>
                         <Style TargetType="Button">
+                            <Setter Property="Foreground" Value="White"></Setter>
                             <Setter Property="Background" Value="#FE6584"/>
                             <Setter Property="Cursor" Value="Hand"/>
                             <Style.Triggers>
@@ -227,14 +239,15 @@
 
                                 </Trigger>
                                 <Trigger Property="IsEnabled" Value="False">
-                                    <Setter Property="Background" Value="#917178"/>
+                                    <Setter Property="Background" Value="#d18292"/>
+                                    <Setter Property="Foreground" Value="LightGray"></Setter>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Border CornerRadius="25" Background="{TemplateBinding Background}">
+                            <Border CornerRadius="0,0,25,25" Background="{TemplateBinding Background}">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
@@ -242,13 +255,14 @@
                 </Button>
             </StackPanel>
         </Grid>
-        <ListBox BorderThickness="0" FontSize="24" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=GameData}" SelectedItem="{Binding Path=Selected, Mode=TwoWay}" HorizontalContentAlignment="Left" Margin="25" FontFamily="Fonts/#RobotoThin" Foreground="White" FontWeight="Light" Background="#0f0f2d">
+        <ListBox BorderThickness="0" FontSize="24" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=GameData}" SelectedItem="{Binding Path=Selected, Mode=TwoWay}" HorizontalContentAlignment="Left" Margin="25" FontFamily="Fonts/#RobotoThin" Background="#181535" Foreground="White" FontWeight="Light">
+            
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=Name}" Margin="1"></TextBlock>
-                        <TextBlock Text="{Binding Path=Developer}" Margin="1"></TextBlock>
-                        <TextBlock Text="{Binding Path=Publisher}" Margin="1"></TextBlock>
+                        <TextBlock HorizontalAlignment="Left" Text="{Binding Path=Name}" Margin="1,1,20,1"></TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Developer}" Margin="1,1,20,1"></TextBlock>
+                        <TextBlock HorizontalAlignment="Right" Text="{Binding Path=Publisher}" Margin="1,1,20,1"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
