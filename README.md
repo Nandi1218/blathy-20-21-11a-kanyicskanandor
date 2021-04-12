@@ -10,4 +10,4 @@
 
 ![Design](/SneakPeak.png)
 
-Bónusz munka [videó](https://youtu.be/dQw4w9WgXcQ)
+no [videó](https://youtu.be/dQw4w9WgXcQ)
