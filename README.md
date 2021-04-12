@@ -10,4 +10,4 @@
 
 ![Design](/SneakPeak.png)
 
-no [videó](https://youtu.be/dQw4w9WgXcQ)
+[no](https://youtu.be/dQw4w9WgXcQ)
