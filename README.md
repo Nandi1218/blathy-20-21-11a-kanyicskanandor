@@ -1,3 +1,4 @@
+# Kanyicska Nándor 11A
 
 - [x] Adatkötés
 - [x] Commandokkal való vezérlés
@@ -9,4 +10,4 @@
 
 ![Design](/SneakPeak.png)
 
-Bónusz munka [videó](https://youtu.be/dQw4w9WgXcQ)
+[no](https://youtu.be/dQw4w9WgXcQ)
