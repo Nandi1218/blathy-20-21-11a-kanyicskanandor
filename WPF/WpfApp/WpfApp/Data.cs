@@ -26,9 +26,5 @@ namespace WpfApp
         public string Publisher { get => publisher; set => Set(ref publisher, value); }
         
 
-        public override string ToString()
-        {
-            return $"{Name} {Developer} {Publisher}";
-        }
     }
 }
